@@ -2,12 +2,13 @@
 	*
 	* @author victoraurelio.com
 	* @since 27/09/16
-	*
-	Busca em profundidade.
-	DFS - Depth-first Search.	
-*/
+	*	
+	BFS - Breadth-first Search.	
+	[br]: Busca em largura.
+***/
 #include <bits/stdc++.h>
 #define maxVertices 100
+
 using namespace std;
 
 typedef struct graph{	
