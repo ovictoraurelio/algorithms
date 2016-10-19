@@ -1,3 +1,9 @@
+/***
+	*
+	* @author victoraurelio.com
+	* @since 18/10/16
+	*
+*/
 #include <bits/stdc++.h>
 
 using namespace std;
