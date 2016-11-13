@@ -11,49 +11,45 @@
 
 using namespace std;
 
-typedef struct graph{	
-	int id, value;
-	list<int> adjs;
-} Graph;
+int graph[maxVertices];
+vector<int> adjs[maxVertices];
 
 int visited[maxVertices];
 
-void bfs(Graph graph[], int started, int v){	
-	list<int> bfsWay;		
-	bfsWay.push_back(graph[started].id);
+void bfs(int started, int v){	
+	list<int> bfsWay;
+	bfsWay.push_back(started);
 	visited[started] = 1;
-	printf("%d\n", graph[bfsWay.front()].id);
+	printf("%d\n", started);
 	while(!bfsWay.empty()){
-		for(list<int>::iterator adj = graph[bfsWay.front()].adjs.begin(); adj != graph[bfsWay.front()].adjs.end();  adj++){			
-			if(visited[(*adj)] == 0){
-				visited[(*adj)] = 1;
-				bfsWay.push_back(*adj);
-				printf("%d\n", *adj);
+		for(int i=0; i<adjs[bfsWay.front()].size(); i++){
+			if(visited[adjs[bfsWay.front()][i]] == 0){
+				visited[adjs[bfsWay.front()][i]] = 1;
+				bfsWay.push_back(adjs[bfsWay.front()][i]);
+				printf("%d\n", adjs[bfsWay.front()][i]);
 			}
 		}
 		bfsWay.pop_front();
 	}
 }
-int read(Graph graphs[]){
+int read(){
 	int nAdj, n,tmp;
 	printf("\nType the number of vertices: ");
 	scanf("%d", &n);
 	for(int i=0; i<n; i++){		
-		graphs[i].id = i; 
 		printf("\nType the number of vertices adjacent and all of adjacency vertices: ");
 		scanf("%d", &nAdj);
 		for(int j=0; j<nAdj; j++){
 			scanf("%d", &tmp);
-			graphs[i].adjs.push_back(tmp);
+			adjs[i].push_back(tmp);
 		}
 	}
 	return n;
 }
 int main(){
-	int v;
-	Graph graphs[maxVertices];
-	v = read(graphs);	
+	int v;	
+	v = read();	
 	printf("\n :: Bfs Result :: \n");
-	bfs(graphs, 0, v);// 0 started bfs search on vertice 0, you can change anytime
+	bfs(0, v);// 0 started bfs search on vertice 0, you can change anytime
 	return 0;	
 }
